@@ -14,7 +14,8 @@ south and east. The exit is to the west.""",
 }
 
 room_admins = {
-
+    "name": "MJ and Simon's room",
+    
     "description":
     """You are leaning agains the door of the systems managers'
 room. Inside you notice Matt "MJ" John and Simon Jones. They

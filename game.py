@@ -98,18 +98,7 @@ def exit_leads_to(exits, direction):
     >>> exit_leads_to(rooms["Tutor"]["exits"], "west")
     'Reception'
     """
-    if exits[direction] == "Reception":
-    	print("Reception")
-    elif exits[direction] == "Admins":
-    	print("MJ and Simon's room")
-    elif exits[direction] == "Tutor":
-    	print("your personal tutor's office")
-    elif exits[direction] == "Parking":
-    	print("the parking lot")
-    elif exits[direction] == "Office":
-    	print("the general office")
-    print(str())
-    
+    return rooms[exits[direction]]["name"]
     
 
 def print_menu_line(direction, leads_to):
@@ -148,7 +137,8 @@ def print_menu(exits):
     # COMPLETE THIS PART:
     # Iterate over available exits:
     #     and for each exit print the appropriate menu line
-
+    for key in exits:
+    	print_menu_line(key, exit_leads_to(exits, key))
     print("Where do you want to go?")
 
 
@@ -168,8 +158,10 @@ def is_valid_exit(exits, user_input):
     >>> is_valid_exit(rooms["Parking"]["exits"], "east")
     True
     """
-    pass
-
+    if user_input in exits:
+    	return True
+    else:
+    	return False
 
 def menu(exits):
     """This function, given a dictionary of possible exits from a room, prints the
@@ -183,19 +175,19 @@ def menu(exits):
 
     # Repeat until the player enter a valid choice
     while True:
-        pass
+        
         # COMPLETE THIS PART:
         
         # Display menu
-
+        print_menu(exits)
         # Read player's input
-
+        user_input = input("")
         # Normalise the input
-
+        normalise_input(user_input)
         # Check if the input makes sense (is valid exit)
             # If so, return the player's choice
-
-
+        if is_valid_exit(exits, user_input):
+        	return user_input
 
 
 def move(exits, direction):
@@ -210,8 +202,11 @@ def move(exits, direction):
     >>> move(rooms["Reception"]["exits"], "west") == rooms["Office"]
     False
     """
-    pass
-
+    
+    if direction in exits:
+        return rooms[exits[direction]]
+    else:
+        return False
 
 # This is the entry point of our program
 def main():
